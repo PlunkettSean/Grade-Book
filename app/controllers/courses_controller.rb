@@ -25,11 +25,11 @@ def index
 	end
 
 	def update
-		movie = Course.find(params[:id])
+		course = Course.find(params[:id])
 		if course.update(course_params)
 			redirect_to "/courses"
 		else
-			flash[:errors] = movie.errors.full_messages
+			flash[:errors] = course.errors.full_messages
 			redirect_to "/courses/#{course.id}/edit"
 		end
 	end
