@@ -1,0 +1,20 @@
+<h1>Edit <%= @student.first_name%> <%= @student.last_name %></h1>
+<form action="/students/<%= @student.id %>" method="post">
+	<input type="hidden" name="_method" value="patch">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<p>
+		<label>First Name</label>
+		<input type="text" name="student[first_name]" value="<%= @student.first_name %>">
+	</p>
+	<p>
+		<label>Last Name</label>
+		<input type="text" name="student[last_name]" value="<%= @student.last_name %>">
+	</p>
+	<input type="submit" name="Update">
+</form>
+
+<% if flash[:errors] %>
+	<% flash[:errors].each do |e| %>
+	<p><%= e %></p>
+	<% end %>
+<% end %>

@@ -1,0 +1,18 @@
+<h1>View Student's <%= pluralize(@courses.count, "Courses") %></h1>
+<table>
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Teacher</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @courses.each do |course| %>
+		<tr>
+			<td><%= course.title %></td>
+			<td><%= course.teacher %></td>
+				<% end %>
+		</tr>
+	</tbody>
+</table>
+<a href="/students">View Student</a>
