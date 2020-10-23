@@ -1,0 +1,24 @@
+<h1>Create Course</h1>
+<form action="/courses" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<p>
+		<label>Title:</label>
+		<input type="text" name="course[title]">
+	</p>
+	<p>
+		<label>Professor:</label>
+		<input type="text" name="course[professor]">
+	</p>
+	<p>
+		<label>Room:</label>
+		<input type="text" name="course[room]">
+
+	</p>
+	<input type="submit" value="Create">
+</form>
+
+<% if flash[:errors] %>|
+	<% flash[:errors].each do |e| %>
+	<p><%= e %></p>
+	<% end %>
+<% end %>
