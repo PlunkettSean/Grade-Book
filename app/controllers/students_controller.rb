@@ -14,10 +14,10 @@ class StudentsController < ApplicationController
 	def create
 		student = Student.new(student_params)
 		if student.save
-			redirect_to "/student"
+			redirect_to "/students"
 		else
 			flash[:errors] = student.errors.full_messages
-			redirect_to "/student/new"
+			redirect_to "/students/new"
 		end
 	end
 
@@ -29,6 +29,12 @@ class StudentsController < ApplicationController
 			flash[:errors] = studentstudent.errors.full_messages
 			redirect_to "/students/#{student.id}/edit"
 		end
+	end
+
+	def destroy
+		student = Student.find(params[:id])
+		student.destroy
+		redirect_to "/students"
 	end
 
 	private 
