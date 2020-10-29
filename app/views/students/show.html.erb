@@ -3,16 +3,18 @@
 	<thead>
 		<tr>
 			<th>Title</th>
-			<th>Teacher</th>
+			<th>Professor</th>
+			<th>Room</th>
 		</tr>
 	</thead>
 	<tbody>
 		<% @courses.each do |course| %>
 		<tr>
 			<td><%= course.title %></td>
-			<td><%= course.teacher %></td>
+			<td><%= course.professor %></td>
+			<td><%= course.room %></td>
 				<% end %>
 		</tr>
 	</tbody>
 </table>
-<a href="/students">View Student</a>
+<a href="/students">View Students</a>
