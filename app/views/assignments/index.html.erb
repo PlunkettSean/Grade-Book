@@ -1,0 +1,24 @@
+<h1>View <%= pluralize(@assignments.count, "Assignments")%></h1>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">Name</th>
+			<th scope="col">Description</th>
+			<th scope="col">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @assignments.each do |assignment| %>
+		<tr>
+			<td><%= assignment.name %></td>
+			<td><%= assignment.description %></td>
+			<td><a href="/assignments/<%=assignment.id %>">Show</a> |
+				<a href="/assignments/<%=assignment.id %>/edit">Edit</a> |
+				<a href="/assignments/<%=assignment.id %>" data-method="delete"
+					data-confirm="Are you sure?">Delete</a>
+			</td>
+				<% end %>
+		</tr>
+	</tbody>
+</table>
+<a href="/assignments/new">Create Assignments</a>

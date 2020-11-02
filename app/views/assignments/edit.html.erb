@@ -1,0 +1,20 @@
+<h1>Edit <%= @assignment.title %> </h1>
+<form action="/assignments/ <%= @assignment.id %>" method="post">
+	<input type="hidden" name="_method" value="patch">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<p>
+		<label>Name:</label>
+		<input type="text" name="assignment[name]" value="<%= @assignment.name %>">
+	</p>
+	<p>
+		<label>Description:</label>
+		<input type="text" name="assignment[description]" value="<%= @assignment.description %>">
+	</p>
+	<input type="submit" value="Update">
+</form>
+
+<% if flash[:errors] %>|
+	<% flash[:errors].each do |e| %>
+	<p><%= e %></p>
+	<% end %>
+<% end %>
