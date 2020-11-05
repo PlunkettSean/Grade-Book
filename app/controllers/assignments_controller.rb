@@ -4,10 +4,11 @@ def index
 	end
 
 	def new
+
 	end
 
 	def create
-		assignment = Assignment.new(course_params)
+		assignment = Assignment.new(assignment_params)
 		if assignment.save
 			redirect_to "/assignments"
 		else
