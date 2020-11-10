@@ -1,0 +1,18 @@
+<h1>View Course's Assignments</h1>
+<table>
+	<thead>
+		<tr>
+			<th>Assignment Name</th>
+			<th>Assignment Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @assignments.each do |assignment| %>
+		<tr>
+			<td><%= assignment.name %></td>
+			<td><%= assignment.description %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<a href="assignments/new">Create Assignment</a>

@@ -16,9 +16,13 @@ def index
 		end
 	end
 
-	def show
+	def students
 		@students = Course.find(params[:id]).students
 	end 
+
+	def assignments
+		@assignments = Course.find(params[:id]).assignments
+	end
 
 	def edit
 		@course = Course.find(params[:id])

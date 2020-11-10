@@ -4,16 +4,16 @@ def index
 	end
 
 	def new
-
+		@course = Course.find(params[:id])
 	end
 
 	def create
 		assignment = Assignment.new(assignment_params)
 		if assignment.save
-			redirect_to "/assignments"
+			redirect_to "/courses/#{assignment.course_id}/assignments"
 		else
 			flash[:errors] = assignment.errors.full_messages
-			redirect_to "/assignments/new"
+			redirect_to "/courses/#{assignment.course_id}/assignments/new"
 		end
 	end
 
@@ -43,6 +43,6 @@ def index
 
 	private
 	def assignment_params
-		params.require(:assignment).permit(:name, :description)
+		params.require(:assignment).permit(:name, :description, :course_id)
 	end
 end

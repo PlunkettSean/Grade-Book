@@ -1,5 +1,5 @@
 <h1>Create Assignment</h1>
-<form action="/assignments" method="post">
+<form action="/courses/<%= @course.id %>/assignments" method="post">
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<p>
 		<label>Name</label>
@@ -8,6 +8,7 @@
 	<p>
 		<label>Description</label>
 		<input type="text" name="assignment[description]">
+		<input type="hidden" name="assignment[course_id]" value ="<%= @course.id %>">
 	</p>
 	<input type="submit" name="Create">
 </form>

@@ -7,12 +7,11 @@ Rails.application.routes.draw do
   get "courses/new" => "courses#new"
   post "courses" => "courses#create"
 
-  get "assignments" => "assignments#index"
-  get "assignments/new" => "assignments#new"
-  post "assignments" => "assignments#create"
-
   get "students/:id" => "students#show"
-  get "courses/:id" => "courses#show"
+  get "courses/:id/students" => "courses#students"
+  get "courses/:id/assignments" => "courses#assignments"
+  get "courses/:id/assignments/new" => "assignments#new"
+  post "courses/:id/assignments" => "assignments#create"
 
 	get "students/:id/edit" => "students#edit"
 	patch "students/:id" => "students#update"
