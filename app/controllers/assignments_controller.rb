@@ -5,11 +5,16 @@ def index
 
 	def new
 		@course = Course.find(params[:id])
+		flash[:errors] = nil
 	end
 
 	def create
+		@assignments = Assignment.all
 		assignment = Assignment.new(assignment_params)
-		if assignment.save
+		if @assignments.length >= 10
+			flash[:notice] = "cannot add more assignments"
+			redirect_to "/courses/#{assignment.course_id}/assignments/new"
+		elsif assignment.save
 			redirect_to "/courses/#{assignment.course_id}/assignments"
 		else
 			flash[:errors] = assignment.errors.full_messages
@@ -36,9 +41,10 @@ def index
 	end
 
 	def destroy
+		course = Course.find(params[:id])
 		assignment = Assignment.find(params[:id])
 		assignment.destroy
-		redirect_to "/assignments"
+		redirect_to "/courses"
 	end
 
 	private

@@ -3,6 +3,8 @@ Rails.application.routes.draw do
  	get "students/new" => "students#new"
  	post "students" => "students#create"
 
+  get "home" => "courses#home"
+
   get "courses" => "courses#index"
   get "courses/new" => "courses#new"
   post "courses" => "courses#create"

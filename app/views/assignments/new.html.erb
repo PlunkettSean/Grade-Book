@@ -1,4 +1,5 @@
 <h1>Create Assignment</h1>
+<a href="/courses/<%= @course.id %>/assignments">Return To Assignments</a>
 <form action="/courses/<%= @course.id %>/assignments" method="post">
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<p>
@@ -17,4 +18,8 @@
 	<% flash[:errors].each do |e| %>
 	<p><%= e %></p>
 	<% end %>
+<% end %>
+
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
 <% end %>
