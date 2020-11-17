@@ -13,11 +13,11 @@ Rails.application.routes.draw do
   get "courses/:id/assignments/new" => "assignments#new"
   post "courses/:id/assignments" => "assignments#create"
 
+  get "courses/:id/edit" => "courses#edit"
+  patch "courses/:id" => "courses#update"
+  delete "courses/:id" => "courses#destroy"
+
 	get "students/:id/edit" => "students#edit"
 	patch "students/:id" => "students#update"
-	delete "students/:id" => "students#destroy"
-
-	get "courses/:id/edit" => "courses#edit"
-  patch "courses/:id" => "courses#update"
- 	delete "courses/:id" => "courses#destroy"
+	delete "students/:id" => "students#destroy"	
 end 
