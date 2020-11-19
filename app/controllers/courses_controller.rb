@@ -39,9 +39,11 @@ def index
 	end
 
 	def destroy
-		@assignments = Course.find(params[:id])
-		@assignments.destroy
-		redirect_to "/courses/new"
+		@course = Course.find(params[:id])
+		Course.find(params[:id]).assignments.destroy_all
+		Course.find(params[:id]).studentCourse.destroy_all
+		@course.destroy
+		redirect_to "/courses"
 	end
 
 	private
