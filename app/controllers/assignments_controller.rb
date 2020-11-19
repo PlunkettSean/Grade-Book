@@ -9,7 +9,8 @@ def index
 	end
 
 	def create
-		@assignments = Assignment.all
+		@course = Course.find(params[:id])
+		@assignments = Course.find(params[:id]).assignments
 		assignment = Assignment.new(assignment_params)
 		if @assignments.length >= 10
 			flash[:notice] = "cannot add more assignments"
