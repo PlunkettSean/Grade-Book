@@ -32,6 +32,10 @@ class StudentsController < ApplicationController
 	end
 
 	def destroy
+		studentcourse = StudentCourse.find_by(student_id: params[:id])
+		if !studentcourse.nil?
+		studentcourse.destroy
+		end
 		student = Student.find(params[:id])
 		student.destroy
 		redirect_to "/students"
