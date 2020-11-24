@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "courses/:id/assignments" => "courses#assignments"
   get "courses/:id/assignments/new" => "assignments#new"
   post "courses/:id/assignments" => "assignments#create"
+  delete "courses/:id/assignments/:assignmentId" => "assignments#destroy"
 
   get "courses/:id/edit" => "courses#edit"
   patch "courses/:id" => "courses#update"

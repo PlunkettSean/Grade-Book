@@ -1,6 +1,6 @@
 <h1>View Course's Assignments</h1>
 <a href="/courses">Back</a>
-<table>
+<table class="table table-striped">
 	<thead>
 		<tr>
 			<th>Assignment Name</th>
@@ -13,6 +13,8 @@
 		<tr>
 			<td><%= assignment.name %></td>
 			<td><%= assignment.description %></td>
+			<td><a href="/courses/<%=@course.id %>/assignments/<%=assignment.id%>" data-method="delete"
+					data-confirm="Are you sure?">Delete</a></td>
 		</tr>
 		<% end %>
 	</tbody>

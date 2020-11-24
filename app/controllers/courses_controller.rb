@@ -22,6 +22,7 @@ def index
 
 	def assignments
 		@assignments = Course.find(params[:id]).assignments
+		@course = Course.find(params[:id])
 	end
 
 	def edit
