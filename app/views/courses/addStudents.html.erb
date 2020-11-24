@@ -20,7 +20,7 @@
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<p>
 		<label>Student:</label>
-		<select name="studentCourse[student_id]" id="student_id">
+		<select class="form-control" name="studentCourse[student_id]" id="student_id">
 			<% @students.each do |student| %>
 			<option value="<%= student.id %>">
 				<%= student.first_name %> <%= student.last_name %>
