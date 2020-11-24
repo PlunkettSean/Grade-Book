@@ -14,7 +14,8 @@
 </nav>
 
 <h1>Add Student</h1>
-<a href="/courses/<%= @course.id %>/students">Back</a>
+<a class="btn btn-dark" href="/courses/3/students" role="button">Back</a>
+<p></p>
 <form action="/courses/<%= @course.id %>/students" method="post">
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<p>

@@ -14,7 +14,8 @@
 </nav>
 
 <h1>Create Assignment</h1>
-<a href="/courses/<%= @course.id %>/assignments">Return To Assignments</a>
+<a class="btn btn-dark" href="/courses/<%= @course.id %>/assignments" role="button">Back</a>
+<p></p>
 <form action="/courses/<%= @course.id %>/assignments" method="post">
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<p>

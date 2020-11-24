@@ -14,8 +14,10 @@
 </nav>
 
 <h1>View <%= pluralize(@students.count, "Students")%></h1>
-<table class="table table-striped">
-	<thead>
+<a class="btn btn-dark" href="/home" role="button">Home</a>
+<p></p>
+<table class="table table-hover">
+	<thead class="thead-dark">
 		<tr>
 			<th scope="col">First Name</th>
 			<th scope="col">Last Name</th>

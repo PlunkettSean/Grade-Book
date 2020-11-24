@@ -14,6 +14,8 @@
 </nav>
 
 <h1>Edit <%= @course.title %> </h1>
+<a class="btn btn-dark" href="/courses" role="button">Back</a>
+<p></p>
 <form action="/courses/ <%= @course.id %>" method="post">
 	<input type="hidden" name="_method" value="patch">
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
