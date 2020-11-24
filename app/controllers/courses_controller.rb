@@ -18,7 +18,29 @@ def index
 
 	def students
 		@students = Course.find(params[:id]).students
+		@course = Course.find(params[:id])
 	end 
+
+	def addStudents
+		@course = Course.find(params[:id])
+		studentsInCourse = StudentCourse.where('course_id = ?', params[:id]).pluck(:student_id) # integer array
+		@students = Student.all.where.not(id: studentsInCourse)
+	end
+
+	def createStudentCourse
+		course = Course.find(params[:id])
+		@students = Course.find(params[:id]).students
+		studentCourse = StudentCourse.new(studentCourse_params)
+		if @students.length >= 10
+			flash[:notice] = "Class is full. Can not add more Students"
+			redirect_to "/courses/#{course.id}/students/addStudents"
+		elsif studentCourse.save
+			redirect_to "/courses/#{course.id}/students"
+		else
+			flash[:errors] = studentCourse.errors.full_messages
+			redirect_to "/courses/#{course.id}/students/addStudents"
+		end
+	end
 
 	def assignments
 		@assignments = Course.find(params[:id]).assignments
@@ -50,6 +72,11 @@ def index
 	private
 	def course_params
 		params.require(:course).permit(:title, :professor, :room)
+	end
+
+	private
+	def studentCourse_params
+		params.require(:studentCourse).permit(:student_id, :course_id)
 	end
 end
 

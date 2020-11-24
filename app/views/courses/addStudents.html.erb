@@ -1,0 +1,21 @@
+<h1>Add Student</h1>
+<a href="/courses/<%= @course.id %>/students">Back</a>
+<form action="/courses/<%= @course.id %>/students" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<p>
+		<label>Student:</label>
+		<select name="studentCourse[student_id]" id="student_id">
+			<% @students.each do |student| %>
+			<option value="<%= student.id %>">
+				<%= student.first_name %> <%= student.last_name %>
+			</option>
+			<% end %>
+		</select>
+	</p>
+	<input type="hidden" name="studentCourse[course_id]" value="<%= @course.id %>">
+	<input type="submit" name="Create">
+</form>
+
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+<% end %>

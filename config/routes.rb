@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get "courses/new" => "courses#new"
   post "courses" => "courses#create"
 
+  get "courses/:id/students/addStudents" => "courses#addStudents"
+  post "courses/:id/students" => "courses#createStudentCourse"
+
   get "students/:id" => "students#show"
   get "courses/:id/students" => "courses#students"
   get "courses/:id/assignments" => "courses#assignments"
