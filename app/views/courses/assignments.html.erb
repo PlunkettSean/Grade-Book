@@ -13,8 +13,11 @@
 		<tr>
 			<td><%= assignment.name %></td>
 			<td><%= assignment.description %></td>
-			<td><a href="/courses/<%=@course.id %>/assignments/<%=assignment.id%>" data-method="delete"
-					data-confirm="Are you sure?">Delete</a></td>
+			<td>
+				<a href="/courses/<%=@course.id %>/assignments/<%=assignment.id%>/edit">Edit</a> |
+				<a href="/courses/<%=@course.id %>/assignments/<%=assignment.id%>" data-method="delete"
+					data-confirm="Are you sure?">Delete</a>
+			</td>
 		</tr>
 		<% end %>
 	</tbody>
