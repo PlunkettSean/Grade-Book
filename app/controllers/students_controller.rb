@@ -26,7 +26,7 @@ class StudentsController < ApplicationController
 		if student.update(student_params)
 			redirect_to "/students"
 		else
-			flash[:errors] = studentstudent.errors.full_messages
+			flash[:errors] = student.errors.full_messages
 			redirect_to "/students/#{student.id}/edit"
 		end
 	end

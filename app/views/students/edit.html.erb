@@ -1,11 +1,15 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<style>
+h1 {text-align: center;}
+div {text-align: center;}
+</style>
+<nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="/home">Grade Book</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-link active" href="/home">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-link" href="/home">Home</a>
       <a class="nav-link" href="/courses">Courses</a>
       <a class="nav-link" href="/students">Students</a>
       <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Coming Soon</a>
@@ -14,6 +18,16 @@
 </nav>
 
 <h1>Edit <%= @student.first_name%> <%= @student.last_name %></h1>
+<% if flash[:errors] %>
+	<% flash[:errors].each do |e| %>
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	  	<strong>Holy guacamole!</strong> <%= e %>
+	  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    	<span aria-hidden="true">&times;</span>
+	 	</button>
+	</div>
+	<% end %>
+<% end %>
 <a class="btn btn-dark" href="/students" role="button">Back</a>
 <p></p>
 <form action="/students/<%= @student.id %>" method="post">
@@ -27,11 +41,5 @@
 		<label>Last Name</label>
 		<input type="text" name="student[last_name]" value="<%= @student.last_name %>">
 	</p>
-	<input type="submit" name="Update">
+	<input type="submit" class="btn btn-success" name="Update">
 </form>
-
-<% if flash[:errors] %>
-	<% flash[:errors].each do |e| %>
-	<p><%= e %></p>
-	<% end %>
-<% end %>

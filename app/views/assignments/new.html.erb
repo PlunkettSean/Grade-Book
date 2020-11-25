@@ -1,6 +1,5 @@
 <style>
 h1 {text-align: center;}
-p {text-align: center;}
 div {text-align: center;}
 </style>
 <nav class="navbar navbar-dark bg-dark">
@@ -10,7 +9,7 @@ div {text-align: center;}
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-link active" href="/home">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-link" href="/home">Home</a>
       <a class="nav-link" href="/courses">Courses</a>
       <a class="nav-link" href="/students">Students</a>
       <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Coming Soon</a>
@@ -19,28 +18,36 @@ div {text-align: center;}
 </nav>
 
 <h1>Create Assignment</h1>
+<% if flash[:errors] %>
+	<% flash[:errors].each do |e| %>
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	  	<strong>Holy guacamole!</strong> <%= e %>
+	  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    	<span aria-hidden="true">&times;</span>
+	 	</button>
+	</div>
+	<% end %>
+<% end %>
+<% if flash[:notice] %>
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	  	<strong>Holy guacamole!</strong> <%= flash[:notice] %>
+	  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    	<span aria-hidden="true">&times;</span>
+	 	</button>
+	</div>
+<% end %>
 <a class="btn btn-dark" href="/courses/<%= @course.id %>/assignments" role="button">Back</a>
 <p></p>
 <form action="/courses/<%= @course.id %>/assignments" method="post">
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<p>
-		<label>Name</label>
+		<label for="assignment[name]">Name</label>
 		<input type="text" name="assignment[name]">
 	</p>
 	<p>
-		<label>Description</label>
+		<label for="assignment[description]">Description</label>
 		<input type="text" name="assignment[description]">
 		<input type="hidden" name="assignment[course_id]" value ="<%= @course.id %>">
 	</p>
-	<input type="submit" name="Create">
+	<input type="submit" class="btn btn-success" name="Create">
 </form>
-
-<% if flash[:errors] %>
-	<% flash[:errors].each do |e| %>
-	<p><%= e %></p>
-	<% end %>
-<% end %>
-
-<% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
-<% end %>

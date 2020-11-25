@@ -1,6 +1,5 @@
 <style>
 h1 {text-align: center;}
-p {text-align: center;}
 div {text-align: center;}
 </style>
 <nav class="navbar navbar-dark bg-dark">
@@ -19,6 +18,16 @@ div {text-align: center;}
 </nav>
 
 <h1>Create Student</h1>
+<% if flash[:errors] %>
+	<% flash[:errors].each do |e| %>
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	  	<strong>Holy guacamole!</strong> <%= e %>
+	  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    	<span aria-hidden="true">&times;</span>
+	 	</button>
+	</div>
+	<% end %>
+<% end %>
 <a class="btn btn-dark" href="/students" role="button">Back</a>
 <p></p>
 <form action="/students" method="post">
@@ -31,11 +40,5 @@ div {text-align: center;}
 		<label>Last Name</label>
 		<input type="text" name="student[last_name]">
 	</p>
-	<input type="submit" name="Create">
+	<input type="submit" class="btn btn-success" name="Create">
 </form>
-
-<% if flash[:errors] %>
-	<% flash[:errors].each do |e| %>
-	<p><%= e %></p>
-	<% end %>
-<% end %>
