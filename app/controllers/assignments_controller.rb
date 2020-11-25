@@ -5,7 +5,6 @@ def index
 
 	def new
 		@course = Course.find(params[:id])
-		flash[:errors] = nil
 	end
 
 	def create
@@ -13,7 +12,7 @@ def index
 		@assignments = Course.find(params[:id]).assignments
 		assignment = Assignment.new(assignment_params)
 		if @assignments.length >= 10
-			flash[:notice] = "cannot add more assignments"
+			flash[:notice] = "Cannot add more assignments"
 			redirect_to "/courses/#{assignment.course_id}/assignments/new"
 		elsif assignment.save
 			redirect_to "/courses/#{assignment.course_id}/assignments"
