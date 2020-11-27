@@ -1,45 +1,52 @@
 <style>
-h1 {text-align: center;}
-div {text-align: center;}
+	h1 {text-align: center;}
+	div {text-align: center;}
+	.form-group {text-align: left;}
 </style>
 <nav class="navbar sticky-top navbar-dark bg-dark">
-  <a class="navbar-brand" href="/home">Grade Book</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-link" href="/home">Home</a>
-      <a class="nav-link" href="/courses">Courses</a>
-      <a class="nav-link" href="/students">Students</a>
-      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Coming Soon</a>
-    </div>
-  </div>
+	<a class="navbar-brand" href="/home">Grade Book</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		<div class="navbar-nav">
+			<a class="nav-link" href="/home">Home</a>
+			<a class="nav-link" href="/courses">Courses</a>
+			<a class="nav-link" href="/students">Students</a>
+			<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Coming Soon</a>
+		</div>
+	</div>
 </nav>
 
 <h1>Edit <%= @student.first_name%> <%= @student.last_name %></h1>
 <% if flash[:errors] %>
-	<% flash[:errors].each do |e| %>
-	<div class="alert alert-warning alert-dismissible fade show" role="alert">
-	  	<strong>Holy guacamole!</strong> <%= e %>
-	  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	    	<span aria-hidden="true">&times;</span>
-	 	</button>
-	</div>
-	<% end %>
+<% flash[:errors].each do |e| %>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	<strong>Holy guacamole!</strong> <%= e %>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
 <% end %>
-<a class="btn btn-dark" href="/students" role="button">Back</a>
-<p></p>
-<form action="/students/<%= @student.id %>" method="post">
-	<input type="hidden" name="_method" value="patch">
-	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-	<p>
-		<label>First Name</label>
-		<input type="text" name="student[first_name]" value="<%= @student.first_name %>">
-	</p>
-	<p>
-		<label>Last Name</label>
-		<input type="text" name="student[last_name]" value="<%= @student.last_name %>">
-	</p>
-	<input type="submit" class="btn btn-success" name="Update">
-</form>
+<% end %>
+<div class="container-fluid">
+	<button type="button" class="btn btn-dark" onclick="history.back()">Back</button>
+	<br><br>
+	<div class="container rounded bg-secondary">
+		<form action="/students/<%= @student.id %>" method="post">
+			<br>
+			<input type="hidden" name="_method" value="patch">
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+			<div class="form-group">
+				<label for="studentFirst"><b>First Name</b></label>
+				<input type="text" class="form-control" name="student[first_name]" id="studentFirst" value="<%= @student.first_name %>">
+			</div>
+			<div class="form-group">
+				<label for="studentLast"><b>Last Name</b></label>
+				<input type="text" class="form-control" name="student[last_name]" id="studentLast" value="<%= @student.last_name %>">
+			</div>
+			<input type="submit" class="btn btn-success" name="Update">
+			<br><br>
+		</form>
+	</div>
+</div>

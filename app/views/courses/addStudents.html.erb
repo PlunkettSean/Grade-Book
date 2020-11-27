@@ -1,45 +1,52 @@
 <style>
-h1 {text-align: center;}
-div {text-align: center;}
+	h1 {text-align: center;}
+	div {text-align: center;}
 </style>
 <nav class="navbar sticky-top navbar-dark bg-dark">
-  <a class="navbar-brand" href="/home">Grade Book</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-link active" href="/home">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-link" href="/courses">Courses</a>
-      <a class="nav-link" href="/students">Students</a>
-      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Coming Soon</a>
-    </div>
-  </div>
+	<a class="navbar-brand" href="/home">Grade Book</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		<div class="navbar-nav">
+			<a class="nav-link active" href="/home">Home <span class="sr-only">(current)</span></a>
+			<a class="nav-link" href="/courses">Courses</a>
+			<a class="nav-link" href="/students">Students</a>
+			<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Coming Soon</a>
+		</div>
+	</div>
 </nav>
 
 <h1>Add Student</h1>
 <% if flash[:notice] %>
-	<div class="alert alert-warning alert-dismissible fade show" role="alert">
-	  	<strong>Holy guacamole!</strong> <%= flash[:notice] %>
-	  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	    	<span aria-hidden="true">&times;</span>
-	 	</button>
-	</div>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	<strong>Holy guacamole!</strong> <%= flash[:notice] %>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
 <% end %>
-<a class="btn btn-dark" href="/courses/3/students" role="button">Back</a>
-<p></p>
-<form action="/courses/<%= @course.id %>/students" method="post">
-	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-	<p>
-		<label>Student:</label>
-		<select class="form-control" name="studentCourse[student_id]" id="student_id">
-			<% @students.each do |student| %>
-			<option value="<%= student.id %>">
-				<%= student.first_name %> <%= student.last_name %>
-			</option>
-			<% end %>
-		</select>
-	</p>
-	<input type="hidden" name="studentCourse[course_id]" value="<%= @course.id %>">
-	<input type="submit" class="btn btn-success" name="Create">
-</form>
+
+<div class="container-fluid">
+	<button type="button" class="btn btn-dark" onclick="history.back()">Back</button>
+	<br><br>
+	<div class="container rounded bg-secondary">
+		<form action="/courses/<%= @course.id %>/students" method="post">
+			<br>
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+			<div class="form-group">
+				<label for="student"><b>Students</b></label>
+				<select type="text" class="form-control" name="studentCourse[student_id]" id="student_id">
+					<% @students.each do |student| %>
+					<option value="<%= student.id %>">
+						<%= student.first_name %> <%= student.last_name %>
+					</option>
+					<% end %>
+				</select>
+			</div>
+			<input type="hidden" name="studentCourse[course_id]" value="<%= @course.id %>">
+			<input type="submit" class="btn btn-success" name="Create">
+		</form>
+		<br>
+	</div>
+</div>

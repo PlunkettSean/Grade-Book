@@ -1,47 +1,74 @@
 <style>
-h1 {text-align: center;}
-p {text-align: center;}
-div {text-align: center;}
+	h1 {text-align: center;}
+	div {text-align: center;}
+	.form-group {text-align: left;}
 </style>
 <nav class="navbar sticky-top navbar-dark bg-dark">
-  <a class="navbar-brand" href="/home">Grade Book</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-link active" href="/home">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-link" href="/courses">Courses</a>
-      <a class="nav-link" href="/students">Students</a>
-      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Coming Soon</a>
-    </div>
-  </div>
+	<a class="navbar-brand" href="/home">Grade Book</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		<div class="navbar-nav">
+			<a class="nav-link active" href="/home">Home <span class="sr-only">(current)</span></a>
+			<a class="nav-link" href="/courses">Courses</a>
+			<a class="nav-link" href="/students">Students</a>
+			<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Coming Soon</a>
+		</div>
+	</div>
 </nav>
 
 <h1>Edit <%= @course.title %> </h1>
-<a class="btn btn-dark" href="/courses" role="button">Back</a>
-<p></p>
-<form action="/courses/ <%= @course.id %>" method="post">
-	<input type="hidden" name="_method" value="patch">
-	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-	<p>
-		<label>Title:</label>
-		<input type="text" name="course[title]" value="<%= @course.title %>">
-	</p>
-	<p>
-		<label>Professor:</label>
-		<input type="text" name="course[professor]" value="<%= @course.professor %>">
-	</p>
-	<p>
-		<label>Room:</label>
-		<input type="text" name="course[room]" value="<%= @course.room %>">
-
-	</p>
-	<input type="submit" value="Update">
-</form>
-
-<% if flash[:errors] %>|
+<% if flash[:errors] %>
 	<% flash[:errors].each do |e| %>
-	<p><%= e %></p>
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	  	<strong>Holy guacamole!</strong> <%= e %>
+	  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    	<span aria-hidden="true">&times;</span>
+	 	</button>
+	</div>
 	<% end %>
 <% end %>
+<div class="container-fluid">
+	<button type="button" class="btn btn-dark" onclick="history.back()">Back</button>
+	<br><br>
+	<div class="container rounded bg-secondary">
+		<form action="/courses/ <%= @course.id %>" method="post">
+			<br>
+			<input type="hidden" name="_method" value="patch">
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+			<div class="form-group">
+				<label for="courseTitle"><b>Course Title</b></label>
+				<input type="text" class="form-control" name="course[title]" id="courseTitle" value="<%= @course.title %>">
+			</div>
+			<!--
+			<p>
+				<label>Title:</label>
+				<input type="text" name="course[title]" value="<%= @course.title %>">
+			</p>
+			-->
+			<div class="form-group">
+				<label for="courseProfessor"><b>Course Professor</b></label>
+				<input type="text" class="form-control" name="course[professor]" id="courseProfessor" value="<%= @course.professor %>">
+			</div>
+			<!--
+				<p>
+					<label>Professor:</label>
+					<input type="text" name="course[professor]" value="<%= @course.professor %>">
+				</p>
+			-->
+			<div class="form-group">
+				<label for="courseRoom"><b>Course Room</b></label>
+				<input type="text" class="form-control" name="course[room]" id="courseRoom" value="<%= @course.room %>">
+			</div>
+			<!--
+			<p>
+				<label>Room:</label>
+				<input type="text" name="course[room]" value="<%= @course.room %>">
+			</p>
+			-->
+		<input type="submit" class="btn btn-success" name="Update">
+	</form>
+	<br>
+</div>
+</div>

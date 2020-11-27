@@ -3,6 +3,7 @@ h1 {text-align: center;}
 p {text-align: center;}
 div {text-align: center;}
 </style>
+
 <nav class="navbar sticky-top navbar-dark bg-dark">
   <a class="navbar-brand" href="/home">Grade Book</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,6 +20,7 @@ div {text-align: center;}
 </nav>
 
 <h1>Edit <%= @assignment.title %> </h1>
+<button type="button" class="btn btn-dark" onclick="history.back()">Back</button>
 <form action="/assignments/ <%= @assignment.id %>" method="post">
 	<input type="hidden" name="_method" value="patch">
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
