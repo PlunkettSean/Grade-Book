@@ -1,25 +1,65 @@
-<h1>View <%= pluralize(@students.count, "Students")%></h1>
-<a href="/home">Return Home</a>
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th scope="col">First Name</th>
-			<th scope="col">Last Name</th>
-			<th scope="col">Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @students.each do |student| %>
-		<tr>
-			<td><%= student.first_name %></td>
-			<td><%= student.last_name %></td>
-			<td><a href="/students/<%=student.id %>">Show</a> |
-				<a href="/students/<%=student.id %>/edit">Edit</a> |
-				<a href="/students/<%=student.id %>" data-method="delete"
-					data-confirm="Are you sure?">Delete</a>
-			</td>
-				<% end %>
-		</tr>
-	</tbody>
-</table>
-<a href="/students/new">Create Students</a>
+<style>
+	h1 {text-align: center;}
+	p {text-align: center;}
+	div {text-align: center;}
+	.clickable-row {cursor: pointer}
+</style>
+
+<!-- Navigation Bar -->
+<nav class="navbar sticky-top navbar-dark bg-dark">
+	<a class="navbar-brand" href="/home">Grade Book</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		<div class="navbar-nav">
+			<a class="nav-link" href="/home">Home</a>
+			<a class="nav-link" href="/courses">Courses</a>
+			<a class="nav-link active" href="/students">Students<span class="sr-only">(current)</span></a>
+			<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Coming Soon</a>
+		</div>
+	</div>
+</nav>
+
+<!-- Java Script -->
+<script>
+jQuery(document).ready(function($) {
+	$(".edit").click(function (event) {
+  		event.stopPropagation()
+	})
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+</script>
+
+<!-- Main Meat -->
+<h1>Students</h1>
+<div class="container-fluid">
+	<button type="button" class="btn btn-dark" onclick="history.back()">Back</button>
+	<a class="btn btn-success" href="/students/new" role="button">Create Student</a>
+	<p></p>
+	<table class="table table-hover">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">First Name</th>
+				<th scope="col">Last Name</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @students.each do |student| %>
+			<tr class="clickable-row" data-href="/students/<%=student.id %>">
+				<td><%= student.first_name %></td>
+				<td><%= student.last_name %></td>
+				<td><a href="/students/<%=student.id %>">Show</a> |
+					<a href="/students/<%=student.id %>/edit" class="edit">Edit</a> |
+					<a href="/students/<%=student.id %>" class="del" data-method="delete"
+						data-confirm="Are you sure?">Delete</a>
+				</td>	
+			<% end %>
+			</tr>
+		</tbody>
+	</table>
+</div>
+

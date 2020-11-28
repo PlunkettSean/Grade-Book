@@ -17,36 +17,34 @@
 	</div>
 </nav>
 
-<h1>Create Course</h1>
-<% if flash[:errors] %>
-<% flash[:errors].each do |e| %>
+<h1>Add Student</h1>
+<% if flash[:notice] %>
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-	<strong>Holy guacamole!</strong> <%= e %>
+	<strong>Holy guacamole!</strong> <%= flash[:notice] %>
 	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 	</button>
 </div>
-<% end %>
 <% end %>
 
 <div class="container-fluid">
 	<button type="button" class="btn btn-dark" onclick="history.back()">Back</button>
 	<br><br>
 	<div class="container rounded bg-secondary">
-		<form action="/courses" method="post">
+		<form action="/courses/<%= @course.id %>/students" method="post">
+			<br>
 			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 			<div class="form-group">
-				<label for="courseTitle"><b>Course Title</b></label>
-				<input type="text" class="form-control" name="course[title]" id="courseTitle" placeholder="Enter Course Title">
+				<label for="student"><b>Students</b></label>
+				<select type="text" class="form-control" name="studentCourse[student_id]" id="student_id">
+					<% @students.each do |student| %>
+					<option value="<%= student.id %>">
+						<%= student.first_name %> <%= student.last_name %>
+					</option>
+					<% end %>
+				</select>
 			</div>
-			<div class="form-group">
-				<label for="courseProfessor"><b>Course Professor</b></label>
-				<input type="text" class="form-control" name="course[professor]" id="courseProfessor" placeholder="Enter Professor Name">
-			</div>
-			<div class="form-group">
-				<label for="courseRoom"><b>Course Professor</b></label>
-				<input type="text" class="form-control" name="course[room]" id="courseRoom" placeholder="Enter Course Room">
-			</div>
+			<input type="hidden" name="studentCourse[course_id]" value="<%= @course.id %>">
 			<input type="submit" class="btn btn-success" name="Create">
 		</form>
 		<br>

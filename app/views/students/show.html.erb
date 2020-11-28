@@ -1,20 +1,57 @@
-<h1>View Student's <%= pluralize(@courses.count, "Courses") %></h1>
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>Title</th>
-			<th>Professor</th>
-			<th>Room</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @courses.each do |course| %>
-		<tr>
-			<td><%= course.title %></td>
-			<td><%= course.professor %></td>
-			<td><%= course.room %></td>
+<style>
+	h1 {text-align: center;}
+	p {text-align: center;}
+	div {text-align: center;}
+	.clickable-row {cursor: pointer}
+</style>
+<nav class="navbar sticky-top navbar-dark bg-dark">
+	<a class="navbar-brand" href="/home">Grade Book</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		<div class="navbar-nav">
+			<a class="nav-link active" href="/home">Home <span class="sr-only">(current)</span></a>
+			<a class="nav-link" href="/courses">Courses</a>
+			<a class="nav-link" href="/students">Students</a>
+			<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Coming Soon</a>
+		</div>
+	</div>
+</nav>
+
+<!-- Java Script -->
+<script>
+jQuery(document).ready(function($) {
+
+    $(".clickable-row").click(function() {
+
+        window.location = $(this).data("href");
+
+    });
+});
+</script>
+
+<!-- Main Meat -->
+<h1>View <%= @student.first_name %> <%= @student.last_name %>'s Classes</h1>
+<div class="container-fluid">
+	<button type="button" class="btn btn-dark" onclick="history.back()">Back</button>
+	<p></p>
+	<table class="table table-hover">
+		<thead class="thead-dark">
+			<tr>
+				<th>Title</th>
+				<th>Professor</th>
+				<th>Room</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @courses.each do |course| %>
+			<tr class="clickable-row" data-href="/courses/<%= course.id %>/assignments">
+				<td><%= course.title %></td>
+				<td><%= course.professor %></td>
+				<td><%= course.room %></td>
 				<% end %>
-		</tr>
-	</tbody>
-</table>
-<a href="/students">View Students</a>
+			</tr>
+		</tbody>
+	</table>
+</div>

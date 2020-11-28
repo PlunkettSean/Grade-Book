@@ -1,6 +1,33 @@
-<h1>Welcome to Grade Book</h1>
-<h3>Select a link to go to that page</h3>
-<p><a href="/courses">Courses</a></p>
-<p><a href="/courses/new">Create a Courses</a></p>
-<p><a href="/students">Students</a></p>
-<p><a href="/courses/new">Create a Student</a></p>
+<style>
+h1 {text-align: center;}
+p {text-align: center;}
+div {text-align: center;}
+</style>
+<nav class="navbar sticky-top navbar-dark bg-dark">
+  <a class="navbar-brand" href="/home">Grade Book</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-link active" href="/home">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-link" href="/courses">Courses</a>
+      <a class="nav-link" href="/students">Students</a>
+      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Coming Soon</a>
+    </div>
+  </div>
+</nav>
+
+<p></p>
+<div class="container-fluid">
+	<span>
+		<div class="jumbotron">
+  			<h1 class="display-4">Welcome to Grade Book</h1>
+  			<p class="lead">This is a project by Sean Plunkett and Bishakha Roy!</p>
+  			<hr class="my-4">
+  			<p>Select a link to go to that page</p>
+  			<a class="btn btn-primary btn-lg" href="/courses" role="button">Courses</a>
+  			<a class="btn btn-primary btn-lg" href="/students" role="button">Students</a>
+		</div>
+	</span>
+</div>
