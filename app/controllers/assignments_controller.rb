@@ -34,10 +34,10 @@ def index
 	def update
 		assignment = Assignment.find(params[:assignmentId])
 		if assignment.update(assignment_params)
-			redirect_to "/courses/#{params[:id]}/assignments"
+			redirect_to "/courses/#{assignment.course_id}/assignments"
 		else
 			flash[:errors] = assignment.errors.full_messages
-			redirect_to "courses/#{:id}/assignments/#{:assignmentId}/edit"
+			redirect_to "/courses/#{assignment.course_id}/assignments/#{params[:assignmentId]}/edit"
 		end
 	end
 
