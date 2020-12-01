@@ -15,16 +15,18 @@
 			<tr>
 				<th>Assignment Name</th>
 				<th>Assignment Description</th>
+				<th>Grade</th>
 				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
-			<% @assignments.each do |assignment| %>
+			<% @studentGrades.each do |studentGrades| %>
 			<tr>
-				<td><%= assignment.name %></td>
-				<td><%= assignment.description %></td>
+				<td><%= studentGrades.assignment.name %></td>
+				<td><%= studentGrades.assignment.description %></td>
+				<td><%= studentGrades.grade %></td>
 				<td>
-					<a href="/students/<%=@student.id%>/studentGrade/<%= StudentGrade.find_by(:student_id => student.id, :assignment_id => assignment.id).id%>">Edit Grade</a>
+					<a type="button" class="btn btn-primary btn-sm" href="/students/<%=@student.id%>/studentGrades/<%= StudentGrade.find_by(:student_id => @student.id, :assignment_id => studentGrades.assignment.id).id%>">Edit Grade</a>
 					</td>
 				</tr>
 			<% end %>

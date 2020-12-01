@@ -20,7 +20,7 @@
 	<button type="button" class="btn btn-dark" onclick="history.back()">Back</button>
 	<br><br>
 	<div class="container rounded bg-secondary">
-		<form action="/student/<%= @student.id %>/studentGrades" method="post">
+		<form action="/students/<%= @student.id %>/studentGrades/<%= @studentGrade.id %>" method="post">
 			<input type="hidden" name="_method" value="patch">
 			<br>
 			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">

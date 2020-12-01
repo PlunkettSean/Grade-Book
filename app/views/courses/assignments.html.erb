@@ -24,10 +24,9 @@
 				<td><%= assignment.name %></td>
 				<td><%= assignment.description %></td>
 				<td>
-					<a href="/courses/<%=@course.id %>/assignments/<%=assignment.id%>">Show Grades</a> |
-					<a href="/courses/<%=@course.id %>/assignments/<%=assignment.id%>/edit">Edit</a> |
-					<a href="/courses/<%=@course.id %>/assignments/<%=assignment.id%>" data-method="delete"
-						data-confirm="Are you sure?">Delete</a>
+					<a type="button" class="btn btn-primary btn-sm" href="/courses/<%=@course.id %>/assignments/<%=assignment.id%>">Show Grades</a>
+					<a type="button" class="btn btn-primary btn-sm" href="/courses/<%=@course.id %>/assignments/<%=assignment.id%>/edit">Edit</a>
+					<a type="button" class="btn btn-primary btn-sm" href="/courses/<%=@course.id %>/assignments/<%=assignment.id%>" data-method="delete" data-confirm="Are you sure?">Delete</a>
 					</td>
 				</tr>
 			<% end %>

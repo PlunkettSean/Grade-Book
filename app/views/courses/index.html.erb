@@ -24,11 +24,10 @@
 				<td><%= course.professor %></td>
 				<td><%= course.room %></td>
 				<td>
-					<a href="/courses/<%= course.id %>/students">Students</a> |
-					<a href="/courses/<%= course.id %>/assignments">Assignments</a> |
-					<a href="/courses/<%= course.id %>/edit">Edit</a> |
-					<a href="/courses/<%= course.id %>" data-method="delete"
-						data-confirm="Are you sure?">Delete</a>
+					<a type="button" class="btn btn-primary btn-sm" href="/courses/<%= course.id %>/students">Students</a>
+					<a type="button" class="btn btn-primary btn-sm" href="/courses/<%= course.id %>/assignments">Assignments</a>
+					<a type="button" class="btn btn-primary btn-sm" href="/courses/<%= course.id %>/edit">Edit</a>
+					<a type="button" class="btn btn-primary btn-sm" href="/courses/<%= course.id %>" data-method="delete" data-confirm="Are you sure?">Delete</a>
 				</td>
 			</tr>
 			<% end %>
