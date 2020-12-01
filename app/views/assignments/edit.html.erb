@@ -19,9 +19,9 @@ div {text-align: center;}
   </div>
 </nav>
 
-<h1>Edit <%= @assignment.title %> </h1>
+<h1>Edit <%= @assignment.name %> </h1>
 <button type="button" class="btn btn-dark" onclick="history.back()">Back</button>
-<form action="/assignments/ <%= @assignment.id %>" method="post">
+<form action="/courses/<%= @courseid %>/assignments/<%= @assignment.id %>" method="post">
 	<input type="hidden" name="_method" value="patch">
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<p>
