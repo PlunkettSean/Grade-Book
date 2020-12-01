@@ -1,2 +1,7 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+body {
+   min-height: 400px;
+   margin-bottom: 100px;
+   clear: both;
+}
