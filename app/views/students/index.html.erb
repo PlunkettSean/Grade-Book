@@ -4,23 +4,15 @@
 	div {text-align: center;}
 	.clickable-row {cursor: pointer}
 </style>
-<!-- Java Script -->
+<!-- Java Script  -->
 <script>
 jQuery(document).ready(function($) {
-	$(".edit").click(function (event) {
-  		event.stopPropagation()
-	})
-	$(".del").click(function (event) {
-  		event.stopPropagation()
-  		window.location = $(this).data("href");
-	})
-    $(".clickable-row").click(function() {
+    $(".clickable-row").dblclick(function() {
         window.location = $(this).data("href");
     });
 });
 </script>
-
-<!-- Main Meat -->
+<!--Main Meat -->
 <h1>Students</h1>
 <div class="container-fluid">
 	<button type="button" class="btn btn-dark" onclick="history.back()">Back</button>
@@ -39,12 +31,11 @@ jQuery(document).ready(function($) {
 			<tr class="clickable-row" data-href="/students/<%=student.id %>">
 				<td><%= student.first_name %></td>
 				<td><%= student.last_name %></td>
-				<td>
-					<a href="/students/<%=student.id %>/studentGrades" class="edit">Grades</a> |
-					<a href="/students/<%=student.id %>">Show</a> |
-					<a href="/students/<%=student.id %>/edit" class="edit">Edit</a> |
-					<a data-href="/students/<%=student.id %>" class="del" data-method="delete"
-						data-confirm="Are you sure?">Delete</a>
+				<td class="actionsData">
+					<a type="button" class="btn btn-primary btn-sm" href="/students/<%=student.id %>/studentGrades">Grades</a> 
+					<a type="button" class="btn btn-primary btn-sm" href="/students/<%=student.id %>">Classes</a> 
+					<a type="button" class="btn btn-primary btn-sm" href="/students/<%=student.id %>/edit">Edit</a> 
+					<a type="button" class="btn btn-primary btn-sm" href="/students/<%=student.id %>" data-method="delete" data-confirm="Are you sure?">Delete</a>
 				</td>	
 			<% end %>
 			</tr>
