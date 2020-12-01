@@ -1,42 +1,39 @@
 <style>
-h1 {text-align: center;}
-p {text-align: center;}
-div {text-align: center;}
+	h1 {text-align: center;}
+	p {text-align: center;}
+	div {text-align: center;}
 </style>
 
-<nav class="navbar sticky-top navbar-dark bg-dark">
-  <a class="navbar-brand" href="/home">Grade Book</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-link active" href="/home">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-link" href="/courses">Courses</a>
-      <a class="nav-link" href="/students">Students</a>
-      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Coming Soon</a>
-    </div>
-  </div>
-</nav>
+<% if flash[:errors] %>
+<% flash[:errors].each do |e| %>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	<strong>Holy guacamole!</strong> <%= e %>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<% end %>
+<% end %>
 
 <h1>Edit <%= @assignment.name %> </h1>
-<button type="button" class="btn btn-dark" onclick="history.back()">Back</button>
-<form action="/courses/<%= @courseid %>/assignments/<%= @assignment.id %>" method="post">
-	<input type="hidden" name="_method" value="patch">
-	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-	<p>
-		<label>Name:</label>
-		<input type="text" name="assignment[name]" value="<%= @assignment.name %>">
-	</p>
-	<p>
-		<label>Description:</label>
-		<input type="text" name="assignment[description]" value="<%= @assignment.description %>">
-	</p>
-	<input type="submit" value="Update">
-</form>
-
-<% if flash[:errors] %>|
-	<% flash[:errors].each do |e| %>
-	<p><%= e %></p>
-	<% end %>
-<% end %>
+<div class="container-fluid">
+	<button type="button" class="btn btn-dark" onclick="history.back()">Back</button>
+	<br><br>
+	<div class="container rounded bg-secondary">
+		<form action="/courses/<%= @courseid %>/assignments/<%= @assignment.id %>" method="post">
+			<input type="hidden" name="_method" value="patch">
+			<br>
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+			<div class="form-group">
+				<label for="assignmentName"><b>Assignment Name</b></label>
+				<input type="text" class="form-control" name="assignment[name]" id="assignmentName" value="<%= @assignment.name %>">
+			</div>
+			<div class="form-group">
+				<label for="assignmentDesc"><b>Assignment Description</b></label>
+				<input type="text" class="form-control" name="assignment[description]" id="assignmentDesc" value="<%= @assignment.description %>">
+			</div>
+			<input type="submit" class="btn btn-success" name="Create">
+		</form>
+		<br>
+	</div>
+</div>
