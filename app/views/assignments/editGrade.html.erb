@@ -1,0 +1,37 @@
+<style>
+	h1 {text-align: center;}
+	p {text-align: center;}
+	div {text-align: center;}
+</style>
+
+<% if flash[:errors] %>
+<% flash[:errors].each do |e| %>
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	<strong>Holy guacamole!</strong> <%= e %>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<% end %>
+<% end %>
+
+<h1>Edit <%= @assignment.name %> </h1>
+<div class="container-fluid">
+	<button type="button" class="btn btn-dark" onclick="history.back()">Back</button>
+	<br><br>
+	<div class="container rounded bg-secondary">
+		<form action="/courses/<%= @course.id %>/assignments/<%= @assignment.id %>/grade/<%= @student.id %>/<%= @studentGrade.id %>" method="post">
+			<input type="hidden" name="_method" value="patch">
+			<br>
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+			<input type="hidden" name="studentGrade[student_id]" value="<%= @studentGrade.student_id %>">
+			<input type="hidden" name="studentGrade[assignment_id]" value="<%= @studentGrade.assignment_id %>">
+			<div class="form-group">
+				<label for="studentGrade"><b>Student Grade</b></label>
+				<input type="text" class="form-control" name="studentGrade[grade]" id="studentGrade" value="<%= @studentGrade.grade %>">
+			</div>
+			<input type="submit" class="btn btn-success" name="Update">
+		</form>
+		<br>
+	</div>
+</div>

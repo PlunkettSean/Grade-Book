@@ -35,6 +35,12 @@ def index
 			flash[:notice] = "Class is full. Can not add more Students"
 			redirect_to "/courses/#{course.id}/students/addStudents"
 		elsif studentCourse.save
+			assignmentsInCourse = Assignment.where('course_id = ?', params[:id]).pluck(:id)
+			newestStudent = StudentCourse.order("created_at").last
+			for assignment in assignmentsInCourse
+				@emptyGrade = 0.0
+				StudentGrade.create!(:grade => @emptyGrade.to_f, :assignment_id => assignment, :student_id => newestStudent.student_id)
+			end
 			redirect_to "/courses/#{course.id}/students"
 		else
 			flash[:errors] = studentCourse.errors.full_messages

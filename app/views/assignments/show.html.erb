@@ -1,0 +1,35 @@
+<style>
+	h1 {text-align: center;}
+	h2 {text-align: center;}
+	p {text-align: center;}
+	div {text-align: center;}
+</style>
+<h1><%= @course.title %></h1>
+<h2><%= @assignment.name %></h2>
+<div class="container-fluid">
+	<button type="button" class="btn btn-dark" onclick="history.back()">Back</button>
+	<p></p>
+	<table class="table table-hover">
+		<thead class="thead-dark">
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Grade</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @students.each do |student| %>
+			<tr>
+				<td><%= student.first_name %></td>
+				<td><%= student.last_name %></td>
+				<td><%= StudentGrade.find_by(:student_id => student.id, :assignment_id => @assignment.id).grade%></td>
+				<td>
+					<a href="/courses/<%=@course.id %>/assignments/<%=@assignment.id%>/grade/<%= StudentGrade.find_by(:student_id => student.id, :assignment_id => @assignment.id).student_id%>/<%= StudentGrade.find_by(:student_id => student.id, :assignment_id => @assignment.id).id%>">Edit Grade</a>
+					</td>
+				</tr>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
