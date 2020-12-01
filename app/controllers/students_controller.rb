@@ -8,6 +8,13 @@ class StudentsController < ApplicationController
 		@courses = Student.find(params[:id]).courses
 	end
 
+	def studentGrades
+		@student = Student.find(params[:studentId])
+		assignmentList = StudentGrade.where('student_id = ?', params[:studentId]).pluck(:assignment_id)
+		@assignments = StudentGrade.where('assignment_id = ?', assignmentList)
+		@studentGrades = StudentGrade.where('student_id = ?', params[:studentId])
+	end
+
 	def edit
 		@student = Student.find(params[:id])
 	end

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post "courses/:id/students" => "courses#createStudentCourse"
 
   get "students/:id" => "students#show"
+  get "/students/:studentId/studentGrades" => "students#studentGrades"
   get "courses/:id/students" => "courses#students"
   get "courses/:id/assignments" => "courses#assignments"
   get "courses/:id/assignments/new" => "assignments#new"

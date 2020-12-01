@@ -19,7 +19,7 @@ class AssignmentsController < ApplicationController
 			newestAssignment = Assignment.order("created_at").last
 			for student in studentsInCourse
 				@emptyGrade = 0.0
-				StudentGrade.create!(:grade => @emptyGrade.to_f, :assignment_id => newestAssignment.id, :student_id => student)
+				StudentGrade.create(:grade => @emptyGrade.to_f, :assignment_id => newestAssignment.id, :student_id => student)
 			end
 			redirect_to "/courses/#{assignment.course_id}/assignments"
 		else

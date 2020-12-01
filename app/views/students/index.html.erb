@@ -10,6 +10,10 @@ jQuery(document).ready(function($) {
 	$(".edit").click(function (event) {
   		event.stopPropagation()
 	})
+	$(".del").click(function (event) {
+  		event.stopPropagation()
+  		window.location = $(this).data("href");
+	})
     $(".clickable-row").click(function() {
         window.location = $(this).data("href");
     });
@@ -35,9 +39,11 @@ jQuery(document).ready(function($) {
 			<tr class="clickable-row" data-href="/students/<%=student.id %>">
 				<td><%= student.first_name %></td>
 				<td><%= student.last_name %></td>
-				<td><a href="/students/<%=student.id %>">Show</a> |
+				<td>
+					<a href="/students/<%=student.id %>/studentGrades" class="edit">Grades</a> |
+					<a href="/students/<%=student.id %>">Show</a> |
 					<a href="/students/<%=student.id %>/edit" class="edit">Edit</a> |
-					<a href="/students/<%=student.id %>" class="del" data-method="delete"
+					<a data-href="/students/<%=student.id %>" class="del" data-method="delete"
 						data-confirm="Are you sure?">Delete</a>
 				</td>	
 			<% end %>
