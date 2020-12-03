@@ -13,13 +13,16 @@
 			<tr>
 				<th>First Name</th>
 				<th>Last Name</th>
+				<th>Grade</th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @students.each do |student| %>
+			<% count = 0 %>
 			<tr>
 				<td><%= student.first_name %></td>
 				<td><%= student.last_name %></td>
+				<td><%= (StudentGrade.where("student_id = ?", student.id).where(:assignment_id => @assignmentIds).pluck(:grade).sum(0.0) / @assignments.length).round(2) %></td>
 			</tr>
 			<% end %>
 		</tbody>

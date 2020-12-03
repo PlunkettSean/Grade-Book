@@ -24,14 +24,18 @@ jQuery(document).ready(function($) {
 				<th>Title</th>
 				<th>Professor</th>
 				<th>Room</th>
+				<th>Grade</th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @courses.each do |course| %>
+			<% @assignmentIds = Assignment.where(:course_id => course.id).pluck(:id)%>
+			<% @assignments = Assignment.where(:course_id => course.id)%>
 			<tr class="clickable-row" data-href="/courses/<%= course.id %>/assignments">
 				<td><%= course.title %></td>
 				<td><%= course.professor %></td>
 				<td><%= course.room %></td>
+				<td><%= (StudentGrade.where("student_id = ?", @student.id).where(:assignment_id => @assignmentIds).pluck(:grade).sum(0.0) / @assignments.length).round(2) %></td>
 				<% end %>
 			</tr>
 		</tbody>
