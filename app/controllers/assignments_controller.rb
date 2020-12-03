@@ -33,6 +33,13 @@ class AssignmentsController < ApplicationController
 		@assignment = Assignment.find(params[:assignmentId])
 		@students = Course.find(params[:id]).students
 		@studentGrade = StudentGrade.where('assignment_id = ?', params[:assignmentId])
+
+		assignmentGrades = StudentGrade.where('assignment_id = ?', params[:assignmentId]).pluck(:grade) # [100.0,100.0,1.00,0.0,0.0]
+		sum = assignmentGrades.sum(0.0)
+		@max = assignmentGrades.max()
+		@min = assignmentGrades.min()
+		@average = sum / assignmentGrades.length
+
 	end 
 
 	def editGrade

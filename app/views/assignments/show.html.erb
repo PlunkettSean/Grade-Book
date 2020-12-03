@@ -8,7 +8,23 @@
 <h2><%= @assignment.name %></h2>
 <div class="container-fluid">
 	<button type="button" class="btn btn-dark" onclick="history.back()">Back</button>
-	<p></p>
+	<br><br>
+	<div class="container rounded bg-secondary text-white">
+		<br>
+		<div class="row align-items-center">
+			<div class="col-sm">
+				<h5>Min: <%= @min.round(2) %></h5>
+			</div>
+			<div class="col-sm">
+				<h5>Average: <%= @average.round(2) %></h5>
+			</div>
+			<div class="col-sm">
+				<h5>Max: <%= @max.round(2) %></h5>
+			</div>
+		</div>
+		<br>
+	</div>
+	<br>
 	<table class="table table-hover">
 		<thead class="thead-dark">
 			<tr>
@@ -23,13 +39,13 @@
 			<tr>
 				<td><%= student.first_name %></td>
 				<td><%= student.last_name %></td>
-				<td><%= StudentGrade.find_by(:student_id => student.id, :assignment_id => @assignment.id).grade%></td>
+				<td><%= (StudentGrade.find_by(:student_id => student.id, :assignment_id => @assignment.id).grade).round(2)%></td>
 				<td>
 					<a type="button" class="btn btn-primary btn-sm" href="/courses/<%=@course.id %>/assignments/<%=@assignment.id%>/grade/<%= StudentGrade.find_by(:student_id => student.id, :assignment_id => @assignment.id).student_id%>/<%= StudentGrade.find_by(:student_id => student.id, :assignment_id => @assignment.id).id%>">Edit Grade</a>
-					</td>
-				</tr>
+				</td>
 			</tr>
-			<% end %>
-		</tbody>
-	</table>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
 </div>

@@ -24,7 +24,7 @@
 			<tr>
 				<td><%= studentGrades.assignment.name %></td>
 				<td><%= studentGrades.assignment.description %></td>
-				<td><%= studentGrades.grade %></td>
+				<td><%= studentGrades.grade.round(2) %></td>
 				<td>
 					<a type="button" class="btn btn-primary btn-sm" href="/students/<%=@student.id%>/studentGrades/<%= StudentGrade.find_by(:student_id => @student.id, :assignment_id => studentGrades.assignment.id).id%>">Edit Grade</a>
 					</td>

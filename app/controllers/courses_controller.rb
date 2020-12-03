@@ -19,6 +19,8 @@ def index
 	def students
 		@students = Course.find(params[:id]).students
 		@course = Course.find(params[:id])
+		@assignmentIds = Assignment.where(:course_id => params[:id]).pluck(:id)
+		@assignments = Assignment.where(:course_id => params[:id])
 	end 
 
 	def addStudents
