@@ -71,6 +71,8 @@ def index
 
 	def destroy
 		@course = Course.find(params[:id])
+		@assignmentIds = Assignment.where(:course_id => params[:id]).pluck(:id)
+		StudentGrade.where('assignment_id = ?', @assignmentIds).destroy_all
 		Course.find(params[:id]).assignments.destroy_all
 		Course.find(params[:id]).studentCourse.destroy_all
 		@course.destroy
